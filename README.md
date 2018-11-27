@@ -14,3 +14,5 @@ Inspired by https://medium.com/@goodatsports/how-to-make-a-simple-discord-bot-in
 2. Clone repo
 3. Setup `.env` file (copy `.env.sample` and fill it)
 4. `make`
+
+Stop with `make clean`.
