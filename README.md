@@ -8,9 +8,9 @@ Inspired by https://medium.com/@goodatsports/how-to-make-a-simple-discord-bot-in
    - https://discordapp.com/oauth2/authorize?client_id=<ID>&scope=bot&permissions=36703232
    - https://discordapi.com/permissions.html#36703232
 
-# Deploy
+# Run / Develop / Deploy
 
 1. Install docker and docker-compose.
 2. Clone repo
 3. Setup `.env` file (copy `.env.sample` and fill it)
-4. `docker-compose up --build -d`
+4. `make`
