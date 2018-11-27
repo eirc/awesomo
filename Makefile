@@ -1,7 +1,5 @@
-.PHONY: build run
+.PHONY: default run
+default: run ;
 
-build:
-	docker build -t awesomo .
-
-run: build
-	docker run awesomo
+run:
+	docker-compose up --build
