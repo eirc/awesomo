@@ -47,6 +47,7 @@ bot.mention contains: /roll .+/ do |event|
   begin
     roll = DieRoll.new event.text.match(/roll (?<spec>.+)/)[:spec]
     response = ":game_die: **#{roll.result}** :game_die:"
+    response << " (#{roll.results.join(', ')})" if roll.rolls >= 2
     if rand > 0.7
       comment = case
                 when roll.top_roll?
