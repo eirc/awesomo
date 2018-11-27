@@ -1,6 +1,6 @@
 FROM ruby:2.5-alpine
 
-RUN apk add --no-cache build-base
+RUN apk add --no-cache build-base libsodium-dev
 
 WORKDIR /usr/src/app
 
