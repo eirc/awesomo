@@ -5,8 +5,8 @@ require "./lib/dice.rb"
 
 bot = Discordrb::Bot.new token: ENV['DISCORD_TOKEN']
 
-bot.mention contains: /roll .+/ do |event|
-  roll_spec = event.text.match(/roll (?<spec>.+)/)[:spec]
+bot.mention contains: 'roll' do |event|
+  roll_spec = event.text.match(/roll\s*(?<spec>.*)/)[:spec]
 
   begin
     roller = Dice::Roller.new roll_spec
