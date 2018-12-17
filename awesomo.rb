@@ -2,6 +2,7 @@
 
 require 'discordrb'
 require "./lib/dice.rb"
+require "./lib/poe.rb"
 
 bot = Discordrb::Bot.new token: ENV['DISCORD_TOKEN']
 
@@ -45,6 +46,28 @@ bot.mention contains: 'roll' do |event|
     response << "\n_#{comment}_"
   end
   event.respond response
+end
+
+bot.mention contains: 'poe' do |event|
+  case event.text
+  when /\bpoe\s+(\S+)\s+(\S+)\s+(\S+)\s*\z/
+    account_name, character_name, slot = $1, $2, $3
+    account = Poe::Account.new account_name
+    character = Poe::Character.new account, character_name
+    item = character.item_at slot
+    event.send_embed do |embed|
+      embed.title = item["name"]
+
+      description = ""
+      description << item["implicitMods"].join("\n") << "\n" if item["implicitMods"]
+      description << "---\n" if item["implicitMods"] && item["explicitMods"]
+      description << item["explicitMods"].join("\n") << "\n" if item["explicitMods"]
+      embed.description = description
+      embed.color = '701402'
+
+      embed.thumbnail = Discordrb::Webhooks::EmbedImage.new(url: item['icon'])
+    end
+  end
 end
 
 bot.run
